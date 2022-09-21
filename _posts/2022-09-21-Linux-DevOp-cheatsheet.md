@@ -1,5 +1,5 @@
 ---
-title: DevOp cheatsheet
+title: Linux DevOp cheatsheet
 categories:
  - DevOp
 tags:
@@ -7,7 +7,7 @@ tags:
  - Linux
 ---
 
-## Meaning of Linux directries
+# Meaning of Linux directries
 
 [source link](https://serverfault.com/questions/24523/meaning-of-directories-on-unix-and-unix-like-systems) 
 
@@ -28,19 +28,19 @@ tags:
 - /var - Another directory inherited from the Unixes of old, it stands for "variable". This is where system data that varies may be stored. Such things as spool and cache directories may be located here. If a program needs to write to the local file-system and isn't serving that data to someone directly, it'll go here.
 
 
-## Create group and user
+# Create group and user
 ```sh
 groupadd -g 505 groupname
 useradd -g 505 -u 505 username
 ```
 
-## disable firewall
+# disable firewall
 ```sh
 systemctl stop firewalld
 systemctl disable firewalld
 ```
 
-## setup local yum source
+# setup local yum source
 upload CentOS-7-x86_64-DVD-1611 to /opt
 
 ```sh
@@ -65,8 +65,8 @@ yum makecache
 
 # todo: 
 
-## ssh-keygen and add public key to authorized_keys
+# ssh-keygen and add public key to authorized_keys
 
-## setup nfs
+# setup nfs
 
-## make file-system using gdisk for over 2T disk
+# make file-system using gdisk for over 2T disk
