@@ -42,7 +42,6 @@ systemctl disable firewalld
 
 # setup local yum source
 upload CentOS-7-x86_64-DVD-1611 to /opt
-
 ```sh
 mkdir /opt/yum-local /opt/yum-temp
 mount /opt/CentOS-7_x86_64-DVD-1611 /opt/yum-temp
@@ -84,6 +83,7 @@ showmount -e localhost # show
 ```
 
 # make file-system using gdisk for over 2T disk
+Using fdisk tool can only process at maximum 2T disk, while using parted tool will recognise the file system as 'Microsoft Basic Data' incorrectly. Therefore should use the gdisk tool. 
 ```sh
 yum -y install gdisk.x86_64
 gdisk /dev/vdc #进入gidsk对vdc盘进行操作
