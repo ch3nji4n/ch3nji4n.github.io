@@ -1,7 +1,7 @@
 ---
 title: NumPy vectorize 
 categories:
- - Scientifuc computing
+ - Scientific computing
 tags:
  - Python
  - NumPy
