@@ -146,3 +146,60 @@ mkdir /public
 mount /dev/vdc /public #挂载至/public
 echo“/dev/vdc  /public  ext4  defaults  0 0” >> /etc/fstab #添加开机自动挂载/dev/vdc
 ```
+
+# Lookup CPU info
+
+[CPU ref-1](https://www.perfmatrix.com/physical-cpu-and-logical-cpu)
+[CPU ref-2](https://www.golinuxcloud.com/processors-cpu-core-threads-explained)
+[NUMA ref](https://houmin.cc/posts/b893097a)
+
+Over all, the Total Physical CPU Number == No. of Physical CPU * No. of Core(s) per physical CPU
+And the Total Logical CPU Number == No. of Physical CPU * No. of Core(s) per physical CPU * No. of Thread(s) per core 
+
+- Socket(s) #主板插槽，通常称为n路
+The number of the physical socket to which the CPU belongs. 
+```sh
+lscpu | grep 'Socket'
+```
+
+The socket(s) number is same as the physical CPU number
+- Physical CPU number
+```sh
+cat /proc/cpuinfo | grep 'physical id' | sort | uniq | wc -l
+```
+
+- Core(s) per socket or core(s) per physical CPU
+This number represents the count of the physical core (CPU) to which the hardware thread (logical CPU) belongs.
+```sh
+lscpu | grep 'Core(s) per socket'
+```
+or
+```sh
+cat /proc/cpuinfo | grep 'cpu cores' | uniq
+```
+or
+```sh
+cat /proc/cpuinfo | grep 'core id' | sort -u | wc -l
+```
+
+- Thread(s) per core #超线程数
+This number represents the Logical CPU count under each Core. Each thread under a core is worked as Logical CPU. These threads are also called as Hardware Thread. Hardware Thread supports executing multiple threads simultaneously on each core and every thread runs as an independent CPU instance.
+```sh
+lscpu | grep 'Thread(s) per core'
+```
+
+- CPU(s)
+The total number of Logical CPUs available on the board.
+```sh
+lscpu | grep 'CPU(s)'
+```
+or
+```sh
+cat /proc/cpuinfo | grep 'processer' | wc -l
+```
+
+- NUMA node(s) #非均匀内存访问架构
+Non-uniform memory access node. 
+```sh
+lscpu | grep 'NUMA'
+```
